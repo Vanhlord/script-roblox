@@ -6,6 +6,7 @@ local UIS = game:GetService("UserInputService")
 
 -- Load Module
 local FlyModule = require(script.Parent.Modules.fly)  -- GỌI FILE FLY Ở ĐÂY
+local InfiniteJump = require(script.Parent.Modules.infinitejump)
 
 -- GUI
 local gui = Instance.new("ScreenGui")
@@ -39,6 +40,21 @@ flyBtn.TextSize = 20
 flyBtn.TextColor3 = Color3.new(1, 1, 1)
 flyBtn.Font = Enum.Font.Gotham
 flyBtn.Parent = frame
+
+-- Button: Infinite Jump
+local ijBtn = Instance.new("TextButton")
+ijBtn.Size = UDim2.new(0, 200, 0, 40)
+ijBtn.Position = UDim2.new(0.5, -100, 0.65, 0)
+ijBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+ijBtn.Text = "Infinite Jump"
+ijBtn.TextSize = 20
+ijBtn.TextColor3 = Color3.new(1, 1, 1)
+ijBtn.Font = Enum.Font.Gotham
+ijBtn.Parent = frame
+
+ijBtn.MouseButton1Click:Connect(function()
+    InfiniteJump.Toggle()
+end)
 
 -- Drag
 local dragging, dragStart, startPos
