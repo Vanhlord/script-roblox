@@ -2,12 +2,17 @@
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
+local UIS = game:GetService("UserInputService")
+
+-- Load Module
+local FlyModule = require(script.Parent.Modules.fly)  -- GỌI FILE FLY Ở ĐÂY
+
+-- GUI
 local gui = Instance.new("ScreenGui")
 gui.Name = "NyxMenu"
 gui.ResetOnSpawn = false
 gui.Parent = player:WaitForChild("PlayerGui")
 
--- MAIN FRAME
 local frame = Instance.new("Frame")
 frame.Size = UDim2.new(0, 260, 0, 180)
 frame.Position = UDim2.new(0.35, 0, 0.35, 0)
@@ -16,7 +21,6 @@ frame.BorderSizePixel = 0
 frame.Visible = false
 frame.Parent = gui
 
--- Title
 local title = Instance.new("TextLabel")
 title.Size = UDim2.new(1, 0, 0, 30)
 title.BackgroundTransparency = 1
@@ -26,7 +30,6 @@ title.TextSize = 22
 title.Font = Enum.Font.GothamBold
 title.Parent = frame
 
--- Button: Toggle Fly
 local flyBtn = Instance.new("TextButton")
 flyBtn.Size = UDim2.new(0, 200, 0, 40)
 flyBtn.Position = UDim2.new(0.5, -100, 0.4, 0)
@@ -38,10 +41,7 @@ flyBtn.Font = Enum.Font.Gotham
 flyBtn.Parent = frame
 
 -- Drag
-local UIS = game:GetService("UserInputService")
-
 local dragging, dragStart, startPos
-
 frame.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 then
         dragging = true
@@ -71,9 +71,10 @@ UIS.InputBegan:Connect(function(input)
     end
 end)
 
--- Callback (for linking)
+-- GỌI HÀM FLY MODULE
 flyBtn.MouseButton1Click:Connect(function()
-    print("Fly toggle pressed — hook vào file fly.lua ở đây.")
+    FlyModule.ToggleFly()
 end)
 
-print("Main menu loaded.")
+print("Main loaded.")
+
